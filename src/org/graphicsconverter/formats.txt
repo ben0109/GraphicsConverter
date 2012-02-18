@@ -1,0 +1,5 @@
+pacman=org.graphicsconverter.format.PacManTileSetFactory
+p1=org.graphicsconverter.format.Planar1BPPTileSetFactory
+p2=org.graphicsconverter.format.Planar2BPPTileSetFactory
+p4=org.graphicsconverter.format.Planar4BPPTileSetFactory
+png=org.graphicsconverter.format.PNGTileSetFactory

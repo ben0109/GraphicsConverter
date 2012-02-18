@@ -1,0 +1,40 @@
+<project name="GraphicsConverter" default="dist">
+	<property name="version" value="1.00" />
+	<property name="jarFile" value="graphics-converter.jar" />
+	
+	<property name="root" value="." />
+	<property name="src" value="${root}/src" />
+	<property name="tmp" value="${root}/tmp" />
+	<property name="dist" value="${root}/dist" />
+
+	<target name="dist">
+		<mkdir dir="${dist}"/>
+		<antcall target="createTmp" />
+		<antcall target="compile" />
+		<antcall target="jar" />
+		<antcall target="deleteTmp" />
+	</target>
+	
+	<target name="createTmp">
+		<delete dir="${tmp}" />
+		<mkdir dir="${tmp}/classes"/>
+	</target>
+	
+	<target name="compile">
+		<javac debug="false" destdir="${tmp}/classes" optimize="true" srcdir="${src}" />
+	</target>
+	
+	<target name="jar">
+		<jar destfile="${dist}/${jarFile}" basedir="${tmp}/classes">
+			<fileset dir="${src}" includes="**/*" excludes="**/*.java" />
+			<manifest>
+				<attribute name="Main-Class" value="org.graphicsconverter.GraphicsConverter" />
+				<attribute name="Class-Path" value="" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="deleteTmp">
+		<delete dir="${tmp}" />
+	</target>
+</project>
